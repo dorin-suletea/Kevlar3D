@@ -1,0 +1,16 @@
+----Required Libraries
+		Freeglut : 
+			freeglut 2.8.1 MSVC Package
+			http://www.transmissionzero.co.uk/software/freeglut-devel/
+		Glew :
+			GLEW 1.10.0[07-22-13] Windows 32-bit and 64-bit binaries
+			http://glew.sourceforge.net/
+----Linking Libraries
+		ProjecProps>c/c++>General>Additional Include Directories = $(ProjectDir)K3Lib/freeglut/include;$(ProjectDir)K3Lib/glew-1-10.0/include
+		ProjecProps>Linker>General>Additional Library Directories = $(ProjectDir)K3Lib/freeglut/lib;$(ProjectDir)K3Lib/glew-1.10.0/lib/Release/Win32
+		ProjecProps>Linker>Input>Additional Dependencies>glew32.lib;freeglut.lib
+----Linking Runtime
+		Put in $(ProjectDir)/Debug
+		files  
+		$(ProjectDir)K3Lib\freeglut\bin\freeglut.dll
+		$(ProjectDir)K3Lib\glew-1.10.0\bin\Release\Win32\glew32.dll
