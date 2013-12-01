@@ -15,24 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Log.h">
+    <ClInclude Include="EngineManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\ShaderFactory.h">
+    <ClInclude Include="GLIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Paths.h">
+    <ClInclude Include="Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Log.cpp">
+    <ClCompile Include="EngineManager.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\ShaderFactory.cpp">
+    <ClCompile Include="Log.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderFactory.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

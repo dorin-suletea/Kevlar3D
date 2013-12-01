@@ -52,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)K3Lib\freeglut\include;$(SolutionDir)K3Lib/glew-1-10.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)K3Lib\freeglut\include;$(SolutionDir)K3Lib\glew-1.10.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,14 +79,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Log.h" />
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Paths.h" />
-    <ClInclude Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\ShaderFactory.h" />
+    <ClInclude Include="EngineManager.h" />
+    <ClInclude Include="GLIncludes.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="Paths.h" />
+    <ClInclude Include="ShaderFactory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Log.cpp" />
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\Main.cpp" />
-    <ClCompile Include="C:\Users\GameDEV\Desktop\Kevlar3DCommitable\Kevlar3D\Kevlar3D\ShaderFactory.cpp" />
+    <ClCompile Include="EngineManager.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ShaderFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
