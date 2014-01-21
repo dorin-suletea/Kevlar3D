@@ -19,6 +19,12 @@
     <Filter Include="Resource Files\Source Files\Util">
       <UniqueIdentifier>{72c0ba11-15aa-4343-97ce-b002ed44e2e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObject">
+      <UniqueIdentifier>{633c65b1-098b-4246-80e9-a7e81ef75d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Source Files\GameObject">
+      <UniqueIdentifier>{f5fe9f4a-3ba3-44a8-ba02-18cf20fb0c56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineManager.h">
@@ -27,20 +33,23 @@
     <ClInclude Include="GLIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enums.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderTypes.h">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,14 +59,17 @@
     <ClCompile Include="Main.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>Resource Files\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderFactory.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vector.cpp">
       <Filter>Resource Files\Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Resource Files\Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Resource Files\Source Files\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

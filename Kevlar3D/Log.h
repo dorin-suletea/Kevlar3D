@@ -19,8 +19,10 @@ public:
 	static const std::shared_ptr<Log>		GetInstance(void);
 	void									SetContext(std::string const &context);
 	void									LogInfo(std::string const &message)const;
+
 	void									LogErr(std::string const &message)const;
 	void									LogErr(char* message)const;
+	void									LogErr(int message)const;
 	void									LogErr(const GLubyte * message)const;
 	void									LogErr(const GLchar * message)const;
 											~Log(void);

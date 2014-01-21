@@ -1,13 +1,13 @@
 #pragma once
 #include "Log.h"
 #include "GLIncludes.h"
-#include "Enums.h"
+#include "ShaderTypes.h"
 
-typedef struct {
-    const GLenum 			m_type;
-    const char*				m_filename;
-    GLuint				    m_shaderData;
-} Shader;
+//typedef struct {
+//    const GLenum 			m_type;
+//    const char*				m_filename;
+//    GLuint				    m_shaderData;
+//} Shader;
 
 class ShaderFactory
 {

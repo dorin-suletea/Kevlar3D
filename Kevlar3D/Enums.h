@@ -1,8 +1,0 @@
-#pragma once
-enum ShaderTypes
-{
-	//GL_FRAGMENT_SHADER
-	FRAGMENT_SHADER = 0x8B30,
-	//GL_VERTEX_SHADER
-	VERTEX_SHADER = 0x8B31
-};
