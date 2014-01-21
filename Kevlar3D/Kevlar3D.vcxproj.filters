@@ -13,6 +13,12 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{785f6eca-1211-4748-9a7f-f4a1bcccbd76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Source Files\Util">
+      <UniqueIdentifier>{72c0ba11-15aa-4343-97ce-b002ed44e2e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineManager.h">
@@ -30,6 +36,12 @@
     <ClInclude Include="Paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineManager.cpp">
@@ -43,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="ShaderFactory.cpp">
       <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Resource Files\Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

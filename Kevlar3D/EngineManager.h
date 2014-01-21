@@ -19,5 +19,6 @@ public:
 	void virtual								HandleResize(int newW,int newH);
 	void virtual								HandleKeypress(unsigned char key, int x, int y);
 	void virtual								Render(void)const;
+	void										Init();
 };
 

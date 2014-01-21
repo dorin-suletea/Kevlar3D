@@ -1,6 +1,7 @@
 #pragma once
 #include "Log.h"
 #include "GLIncludes.h"
+#include "Enums.h"
 
 typedef struct {
     const GLenum 			m_type;
@@ -18,6 +19,6 @@ public:
 	~ShaderFactory(void);
 
 	const std::string						ReadFile(std::string const &relativePath);
-	GLuint									LoadShaders(Shader*  shaderInfo);
+	GLuint                                  CompileShader(ShaderTypes shaderType,std::string filename);
 };
 
