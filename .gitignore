@@ -1,3 +1,10 @@
-Debug\*
-Kevlar3D\Kevlar3D\Debug\*
-Kevlar3D.opensdf
+# Kevlar3D/Debug #
+###################
+
+*.tlog
+*.obj
+*.log
+*.lastbuildstate
+*.idb
+*.pdb
+
