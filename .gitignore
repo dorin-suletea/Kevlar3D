@@ -1,3 +1,4 @@
-Debug\*
-Kevlar3D\Debug\*
+Debug/*
+Kevlar3D/Debug/*
 Kevlar3D.opensdf
+Kevlar3D.sdf
