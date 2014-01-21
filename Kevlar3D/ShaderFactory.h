@@ -1,12 +1,13 @@
 #pragma once
 #include "Log.h"
 #include "GLIncludes.h"
+#include "ShaderTypes.h"
 
-typedef struct {
-    const GLenum 			m_type;
-    const char*				m_filename;
-    GLuint				    m_shaderData;
-} Shader;
+//typedef struct {
+//    const GLenum 			m_type;
+//    const char*				m_filename;
+//    GLuint				    m_shaderData;
+//} Shader;
 
 class ShaderFactory
 {
@@ -18,6 +19,6 @@ public:
 	~ShaderFactory(void);
 
 	const std::string						ReadFile(std::string const &relativePath);
-	GLuint									LoadShaders(Shader*  shaderInfo);
+	GLuint                                  CompileShader(ShaderTypes shaderType,std::string filename);
 };
 

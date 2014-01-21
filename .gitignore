@@ -1,0 +1,14 @@
+# Kevlar3D/Debug #
+###################
+
+*.tlog
+*.obj
+*.log
+*.lastbuildstate
+*.idb
+*.pdb
+
+# Root#
+###################
+
+*.opensdf

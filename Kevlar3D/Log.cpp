@@ -57,8 +57,21 @@ Log::LogErr(std::string const &message)const
 	std::cout<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
 	this->m_outputStream<<std::string("-Err- [")<<this->m_logContext<<"] "<<message<<std::endl;
 }
+void			
+Log::LogErr(char* message)const
+{
+	std::cout<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
+	this->m_outputStream<<std::string("-Err- [")<<this->m_logContext<<"] "<<message<<std::endl;
+}
 void					
 Log::LogErr(const GLubyte * message) const
+{
+	std::cout<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
+	this->m_outputStream<<std::string("-Err- [")<<this->m_logContext<<"] "<<message<<std::endl;
+}
+
+void					
+Log::LogErr(int  message) const
 {
 	std::cout<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
 	this->m_outputStream<<std::string("-Err- [")<<this->m_logContext<<"] "<<message<<std::endl;
