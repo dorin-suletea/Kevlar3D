@@ -5,6 +5,7 @@
 #include <memory>
 #include "Paths.h"
 #include "GLIncludes.h"
+#include "Vector.h"
 
 class Log
 {
@@ -19,6 +20,7 @@ public:
 	static const std::shared_ptr<Log>		GetInstance(void);
 	void									SetContext(std::string const &context);
 	void									LogInfo(std::string const &message)const;
+	void									LogInfo(const Vector3 &message)const;
 
 	void									LogErr(std::string const &message)const;
 	void									LogErr(char* message)const;

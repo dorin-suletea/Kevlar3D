@@ -19,6 +19,7 @@ Log::Log(void):m_logContext(Log::LOG_NO_CONTEXT),m_outputStream()
 	if (!this->m_outputStream.is_open())
 		throw "Can't open logfile, check paths";
 	this->m_outputStream<<"LogInit"<<std::endl;
+	std::cout<<std::endl;
 }
 
 Log::~Log(void)
@@ -36,7 +37,7 @@ Log::GetInstance(void)
 void 
 Log::SetContext(std::string const &context)
 {
-	this->m_logContext=context;
+	this->m_logContext= context;
 }
 //--------------------------------------------
 
@@ -46,15 +47,21 @@ Log::SetContext(std::string const &context)
 void 
 Log::LogInfo(std::string const &message)const
 {
-	std::cout<<"loginfo";
-	std::cout<<"[Info] - ["<<this->m_logContext<<"] "<<message<<std::endl;
+	std::cout<<"[Info] - [" + this->m_logContext +"] "+ message<<std::endl;
+	this->m_outputStream<<std::string("-Info- [")<<this->m_logContext<<"] "<<message<<std::endl;
+}
+
+void 
+Log::LogInfo(Vector3 const &message)const
+{
+	std::cout<<"[Info] - [" << this->m_logContext <<"] "<< message<<std::endl;
 	this->m_outputStream<<std::string("-Info- [")<<this->m_logContext<<"] "<<message<<std::endl;
 }
 
 void 
 Log::LogErr(std::string const &message)const
 {
-	std::cout<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
+	std::cout<<std::endl<<"-Err- ["<<this->m_logContext<<"] "<<message<<std::endl;
 	this->m_outputStream<<std::string("-Err- [")<<this->m_logContext<<"] "<<message<<std::endl;
 }
 void			

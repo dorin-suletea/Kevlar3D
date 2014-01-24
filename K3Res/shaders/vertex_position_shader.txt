@@ -1,0 +1,8 @@
+#version 330
+
+attribute vec3 Position;
+uniform vec3 Offset;
+ 
+void main(){
+    gl_Position = vec4(Position.x + Offset.x,Position.y + Offset.y, Position.z + Offset.z, 1.0);
+};

@@ -1,10 +1,9 @@
 LogInit
+-Info- [Material] Initializing Material
 -Info- [Shader] Shader alloc mem ok
--Info- [Shader] Compiling shader vertex_shader.txt
+-Info- [Shader] Compiling shader vertex_position_shader.txt
 -Info- [Shader] Shader compiled ok
 -Info- [Shader] Shader alloc mem ok
 -Info- [Shader] Compiling shader fragment_shader.txt
 -Info- [Shader] Shader compiled ok
--Err- [Shader] shader err pre 33333
--Err- [Shader] 0
 LogDispose

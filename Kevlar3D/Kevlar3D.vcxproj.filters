@@ -25,6 +25,12 @@
     <Filter Include="Resource Files\Source Files\GameObject">
       <UniqueIdentifier>{f5fe9f4a-3ba3-44a8-ba02-18cf20fb0c56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObject\Material">
+      <UniqueIdentifier>{96007462-b4f3-4f52-add5-8d83c0bfcda5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Source Files\GameObject\Material">
+      <UniqueIdentifier>{e8979197-5ba6-4efd-ac6d-658ad69e5edb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineManager.h">
@@ -45,11 +51,17 @@
     <ClInclude Include="Log.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderTypes.h">
+      <Filter>Header Files\GameObject\Material</Filter>
+    </ClInclude>
     <ClInclude Include="Shader.h">
+      <Filter>Header Files\GameObject\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderTypes.h">
-      <Filter>Header Files\GameObject</Filter>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\GameObject\Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +81,13 @@
       <Filter>Resource Files\Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
+      <Filter>Resource Files\Source Files\GameObject\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
       <Filter>Resource Files\Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Resource Files\Source Files\GameObject\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
