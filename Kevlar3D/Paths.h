@@ -11,7 +11,10 @@ const std::string SHADER_PATH = RESOURCE_PATH+"shaders/";
 
 
 
-
+//######################################################################
+//##############################   Mindfucks    ########################################
+//
+//1) If GLSL does not use an uniform in the main funtion , even if its defined it wont be returned by glGetUniform
 
 
 

@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Debug.h"
 using namespace std;
 
 
@@ -7,8 +8,8 @@ using namespace std;
 GameObject::GameObject(string vname)
 	:name(vname){
 	vertexBufferPtr = -1;
-	vertexOffsetPtr = -1;
-	position = Vector3(0.0f,0.0f,0.0f);
+	vetexCount = -1;
+	debugMaterial = NULL;
 }
 
 GameObject::GameObject(){
@@ -40,6 +41,7 @@ GameObject::SetMeshVertices(vector<Vector3> meshVertices){
 
 	////set the internal GL Array buffer point to our buffer
 	glBindBuffer(GL_ARRAY_BUFFER,vertexBufferPtr);
+	this->vetexCount = vecSize;
 	////set the data into our buffer
 	glBufferData(GL_ARRAY_BUFFER,sizeof(Vector3)*vecSize,vertices,GL_STATIC_DRAW);
 
@@ -52,53 +54,33 @@ GameObject::SetMeshVertices(vector<Vector3> meshVertices){
 	return 0 ;
 }
 
-void 
-GameObject::SetMaterial(Material* vmat){
-	Log::GetInstance()->SetContext("GameObject");
-
-	material = vmat;
-	//setting pointer to offset shader attributes
-	vertexOffsetPtr = glGetUniformLocation(material->GetShaderProgram(), "Offset");
-
-	if (-1 == vertexOffsetPtr){
-		Log::GetInstance()->LogErr("Can not obtain Offset shader attribute, make sure material " +material->GetName() + "is offsetable ; game object "+name);
-	}
-}
-
-void 
-GameObject::SetPosition(Vector3 vPosition){
-	positionDirty = true;
-	position = vPosition; 
-}
-
 string 
 GameObject::GetName(){
 	return name;
 }
 
-Vector3 
-GameObject::GetPosition(){
-	return position;
+Transform* 
+GameObject::GetTransform(){
+	return transform;
+}
+
+void
+GameObject::SetTransform(Transform* vTransform){
+	transform = vTransform;
 }
 
 void 
-GameObject::updatePosition(){
-	if (NULL == material || -1 == vertexOffsetPtr){
-		Log::GetInstance()->LogErr("Position can not be updated , no material reference was set for game object, "+name +" or material does not contain vertex_position_shader");
-		positionDirty = false;
-		return;
-	}
-	positionDirty = false;
-	glUniform3f(vertexOffsetPtr,position.x,position.y,position.z);
+GameObject::SetDebugMaterial(Material *vMaterial){
+	debugMaterial = vMaterial;
 }
-
 
 void 
 GameObject::Draw(){
-	material->Use();
-	if (positionDirty){
-		updatePosition();
-	}
+	Debug::GetInstance()->DrawLine(transform->GetPosition(),Vector3(transform->GetForward().x, transform->GetForward().y,transform->GetForward().z));
+
+	transform->GetPhisicsMaterial()->Use();
+	transform->Update();
+
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER,vertexBufferPtr);
 	////	//tell gl how to parse tha data from our buffer (Vector3 vertices[])
@@ -108,7 +90,7 @@ GameObject::Draw(){
 	////	//fifth param = stride : the size of the structure passwd in bytes
 	////	//sixth param = offset : the byte offset in our object (in case it has fields opn gl does not care about)
 	glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,0);
-	glDrawArrays(GL_TRIANGLES,0,3);
+	glDrawArrays(GL_TRIANGLES,0,vetexCount);
 	glDisableVertexAttribArray(0);
 }
 

@@ -15,6 +15,7 @@ private:
 
 public:
 	Material(string name);
+	Material();
 	~Material(void);
 	void Compile();
 	void AddShader(Shader vshader);

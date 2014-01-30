@@ -63,6 +63,15 @@
     <ClInclude Include="Material.h">
       <Filter>Header Files\GameObject\Material</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceLoader.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineManager.cpp">
@@ -88,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>Resource Files\Source Files\GameObject\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceLoader.cpp">
+      <Filter>Resource Files\Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Resource Files\Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Resource Files\Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

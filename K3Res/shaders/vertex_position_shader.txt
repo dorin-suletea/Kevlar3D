@@ -1,8 +1,15 @@
 #version 330
 
 attribute vec3 Position;
-uniform vec3 Offset;
+uniform vec4 Offset;
+uniform vec4 Scale;
+
+uniform mat4 Rotation;
+uniform mat4 MVP;
  
 void main(){
-    gl_Position = vec4(Position.x + Offset.x,Position.y + Offset.y, Position.z + Offset.z, 1.0);
+    //DO NOT CHANGE THE FUCKING ORDER OF OPERATIONS
+    vec4 transform =  Rotation *   (vec4(Position.x,Position.y, Position.z,1) * Scale)  ;
+	vec4 globalOffset = vec4(transform.x +Offset.x , transform.y + Offset.y , transform.z+Offset.z , 1);
+	gl_Position = globalOffset;
 };

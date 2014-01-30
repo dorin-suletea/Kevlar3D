@@ -6,6 +6,9 @@ Material::Material(string vname)
 	shaderProgram=-1;
 }
 
+Material::Material(){
+	Material("Unknown material");
+}
 
 Material::~Material(void)
 {

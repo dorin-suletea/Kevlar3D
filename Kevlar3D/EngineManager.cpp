@@ -3,7 +3,10 @@
 #include "Vector.h"
 #include "Material.h"
 #include "GameObject.h"
-
+#include "glm\mat4x4.hpp"
+#include <glm/gtc/matrix_transform.hpp>
+#include "ResourceLoader.h"
+#include "Debug.h"
 
 //************************************************
 //CallbackDelegates for GL_Manager
@@ -67,12 +70,32 @@ EngineManager::HandleResize(int newW,int newH)
 void 
 EngineManager::HandleKeypress(unsigned char key, int x, int y)
 {
-	//Log::GetInstance()->LogInfo("Key pressed");
+	Vector3 deltaMovement = Vector3(0.1f , 0.0f , 0.0f);
 
-	Vector3 delta = Vector3(0.1f , 0.0f , 0.0f);
-	for(std::vector<GameObject>::iterator it = gameObjectList->begin(); it != gameObjectList->end(); ++it){
-		it->SetPosition(it->GetPosition()+delta);
-	}
+	//for(std::vector<GameObject>::iterator it = gameObjectList->begin(); it != gameObjectList->end(); ++it){
+		GameObject it = gameObjectList->at(0);
+		float movementSpeed = 0.1;
+		vec4 delta;
+		Vector3 pos;
+		switch(key)
+		{
+		case 'a': 
+				it.GetTransform()->SetRotation(it.GetTransform()->GetRotation()+Vector3(0.0,1,0.0));
+				break;
+		case 'd': 
+				it.GetTransform()->SetRotation(it.GetTransform()->GetRotation()+Vector3(0.0,-1,0.0));
+				break;
+		case 'w': 
+			
+			//break;
+		default :
+			pos = it.GetTransform()->GetPosition();
+			delta = it.GetTransform()->GetForward()*movementSpeed;
+			it.GetTransform()->SetPosition(Vector3(pos.x+delta.x,pos.y+delta.y,pos.z+delta.z));
+
+			break;
+		}
+	//}
 	glutPostRedisplay();
 }
 
@@ -91,7 +114,7 @@ EngineManager::Start(int argc, char** argv){
 	glutInitContextVersion(3, 1);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	glutInitWindowSize(400, 400); 
 	glutInitWindowPosition(100,100);
 
@@ -104,19 +127,40 @@ EngineManager::Start(int argc, char** argv){
 	glewExperimental = GL_TRUE;// Added because of http://openglbook.com/glgenvertexarrays-access-violationsegfault-with-glew/
 	glewInit();
 
+	//speeds up by not rendering object's back but!!
+	//all triangles must be defined clockwise or they wont be visible 
+	//glEnable(GL_CULL_FACE);
+	//glFrontFace(GL_CW);
+
+
 	GLenum err = -1;
 	err = glGetError();
 
 	glClearColor(0,0,0,0);
-
+	//glMatrixMode(GL_PROJECTION);
+	//glLoadIdentity();
+	//gluLookAt(-15.0,-2.0,-1.0,0.4,0,0,0,0,0);
+	//gluLookat(1/dist, 1/dist, 1/dist, 0,0,0, 0,1,0);
 	EngineManager::GetInstance()->Init();
 	glutMainLoop();
 }
 
 
+glm::mat4 ProjectionMatrix = glm::perspective(45.0f, 3.0f / 3.0f, 0.1f, 100.0f);
+glm::mat4 View       = glm::lookAt(
+    glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
+    glm::vec3(0,0,0), // and looks at the origin
+    glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
+);
+glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
+// Our ModelViewProjection : multiplication of our 3 matrices
+glm::mat4 MVP        = ProjectionMatrix * View * Model; // Remember, matrix multiplication is the other way ar
 
 void	
 EngineManager::Init(){
+	//initialize the debug shaders
+	Debug::GetInstance()->Setup();
+
 	//make the default material
 	Material *defaultMaterial = new Material("Default material");
 	Shader vertShader =   Shader("vertex_position_shader.txt",ShaderTypes::VERTEX_SHADER);
@@ -126,17 +170,102 @@ EngineManager::Init(){
 	defaultMaterial->AddShader(fragShader);
 	defaultMaterial->Compile();
 
-	////make the game object
-	vector<Vector3> triangle1Points = vector<Vector3>();
-	triangle1Points.push_back(Vector3(-0.6f , -0.6f , 0.0f));
-	triangle1Points.push_back(Vector3( 0.0f ,  0.6f , 0.0f));
-	triangle1Points.push_back(Vector3(0.6f , -0.6f , 0.0f));
 
-	GameObject triangle1 = GameObject("Triangle_1");
-	triangle1.SetMeshVertices(triangle1Points);
-	triangle1.SetMaterial(defaultMaterial);
-	triangle1.SetPosition(Vector3(0.0f , 0.0f , 0.0f));
-	gameObjectList->push_back(triangle1);
+	//meke the debug material 
+	Material *debug = new Material("Default material");
+	Shader debugVertShader =   Shader("vertex_shader.txt",ShaderTypes::VERTEX_SHADER);
+	Shader debugFragShader =   Shader("fragment_shader.txt",ShaderTypes::FRAGMENT_SHADER);
+	
+	debug->AddShader(debugVertShader);
+	debug->AddShader(debugFragShader);
+	debug->Compile();
+
+
+
+
+
+
+
+	vector<glm::vec3> out_vertices = vector<glm::vec3>(); 
+	vector<glm::vec2> out_uvs = vector<glm::vec2>(); 
+	vector<glm::vec3> out_normals = vector<glm::vec3>(); 
+
+
+	
+	ResourceLoader loader =  ResourceLoader();
+	//load manequin
+	vector<Vector3> manequinVerts = vector<Vector3>(); 
+	loader.LoadMeshOBJ("D:/Tools/Development/Dropbox/Workspaces/WorkspaceCpp/Kevlar3D/K3Res/manequin.obj",out_vertices,out_uvs,out_normals);
+
+	int meshSize = out_vertices.size();
+	for (int i=0;i<meshSize;i++){
+		manequinVerts.push_back(Vector3(out_vertices.at(i)));
+	}
+	out_vertices.clear();
+
+	//load draven
+	vector<Vector3> dravenVerts = vector<Vector3>(); 
+	loader.LoadMeshOBJ("D:/Tools/Development/Dropbox/Workspaces/WorkspaceCpp/Kevlar3D/K3Res/cube.obj",out_vertices,out_uvs,out_normals);
+
+	meshSize = out_vertices.size();
+	for (int i=0;i<meshSize;i++){
+		dravenVerts.push_back(Vector3(out_vertices.at(i)));
+	}
+
+	//make the game object cube
+	vector<Vector3> cube1Points = vector<Vector3>();
+	cube1Points.push_back(Vector3(-0.5f  , 0.5f , 0.5f));
+	cube1Points.push_back(Vector3(0.5f  , -0.5f  , 0.5f));
+	cube1Points.push_back(Vector3( -0.5f  , -0.5f  , 0.5f));
+
+	cube1Points.push_back(Vector3(0.5f  , 0.5f , 0.5f));
+	cube1Points.push_back(Vector3( -0.5f  , +0.5f  , 0.5f));
+	cube1Points.push_back(Vector3(0.5f   , -0.5f , -0.5f));
+
+
+	cube1Points.push_back(Vector3(-0.5f  , 0.5f  , 0.5f));
+	cube1Points.push_back(Vector3(-0.5f  , 0.5f  , -0.5f));
+	cube1Points.push_back(Vector3( 0.5f  , 0.5f  , 0.5f));
+
+	cube1Points.push_back(Vector3(-0.5f  , 0.5f , 0.5f));
+	cube1Points.push_back(Vector3(0.5f  , 0.5f , 0.5f));
+	cube1Points.push_back(Vector3(0.5f   , -0.5f , +0.5f));
+
+
+	Transform* transformManeqin = new Transform(defaultMaterial);
+	Transform* transformDraven = new Transform(defaultMaterial);
+
+	GameObject manequinGo = GameObject("Manequin");
+	GameObject dravenGo = GameObject("Draven");
+	manequinGo.SetDebugMaterial(debug);
+
+	manequinGo.SetTransform(transformManeqin);
+	manequinGo.SetMeshVertices(manequinVerts);
+
+	dravenGo.SetTransform(transformDraven);
+	dravenGo.SetMeshVertices(dravenVerts);
+
+	defaultMaterial->Use();
+
+
+
+	manequinGo.GetTransform()->SetPosition(Vector3(-0.0f ,-0.1 , 0.3f));
+	manequinGo.GetTransform()->SetScale(0.05);
+	manequinGo.GetTransform()->SetRotation(Vector3(0,90,0));
+
+	//dravenGo.GetTransform()->SetPosition(Vector3(0.5f ,-0.5 , 0.3f));
+	////dravenGo.GetTransform()->SetScale(0.005);
+	//dravenGo.GetTransform()->SetRotation(Vector3(0,0,0));
+
+
+
+	gameObjectList->push_back(manequinGo);
+	//gameObjectList->push_back(dravenGo);
+
+	GLuint MatrixID = glGetUniformLocation(defaultMaterial->GetShaderProgram(), "MVP");
+	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+
 }
 
 
@@ -145,9 +274,19 @@ EngineManager::Render(void)const
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+
 	for(std::vector<GameObject>::iterator it = gameObjectList->begin(); it != gameObjectList->end(); ++it){
 		it->Draw();
+	//glBegin(GL_LINES);
+	//	//glVertex3f(gameObjectList->at(0).GetTransform()->GetPosition().x,gameObjectList->at(0).GetTransform()->GetPosition().y+0.4,gameObjectList->at(0).GetTransform()->GetPosition().z);
+	//	glVertex3f(5.0f,5.0f,0.0f);
+	//	glVertex3f(0.0f,0.0f,0.0f);
+
+	//	//glVertex3f(gameObjectList->at(0).GetTransform()->forward.x*50,gameObjectList->at(0).GetTransform()->forward.y*50,gameObjectList->at(0).GetTransform()->forward.z*50);
+	//glEnd();
 	}
+
 
 	glutSwapBuffers();
 	glDisableVertexAttribArray(0);
