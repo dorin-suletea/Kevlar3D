@@ -31,11 +31,14 @@
     <Filter Include="Resource Files\Source Files\GameObject\Material">
       <UniqueIdentifier>{e8979197-5ba6-4efd-ac6d-658ad69e5edb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{caf0e841-905f-4d7a-8175-e388e1cc4dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Source Files\Animation">
+      <UniqueIdentifier>{15551c95-8a88-43d9-86c6-ea54a86956d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EngineManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GLIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,6 +75,18 @@
     <ClInclude Include="Debug.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="MD2Animation.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineManager.cpp">
@@ -106,6 +121,15 @@
     </ClCompile>
     <ClCompile Include="Debug.cpp">
       <Filter>Resource Files\Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="MD2Animation.cpp">
+      <Filter>Resource Files\Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Resource Files\Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineHelper.cpp">
+      <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

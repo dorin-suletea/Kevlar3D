@@ -3,6 +3,7 @@
 #include <vector>
 #include "Material.h"
 #include "Transform.h"
+#include "Animator.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
 	GLsizei vetexCount;
 	Transform* transform;
 	Material* debugMaterial;
+	Animator* animator;
 
 public:
 	GameObject(string vname);
@@ -28,5 +30,9 @@ public:
 	void SetTransform(Transform* vTransform);
 
 	void SetDebugMaterial(Material *vMaterial);
+	void Update();
+
+	void SetAnimator(Animator* vanimator);
+	Animator* GetAnimator();
 };
 

@@ -79,12 +79,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="EngineHelper.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLIncludes.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="MD2Animation.h" />
     <ClInclude Include="Paths.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Shader.h" />
@@ -94,12 +97,15 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="EngineHelper.cpp" />
     <ClCompile Include="EngineManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MD2Animation.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />

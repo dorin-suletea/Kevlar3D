@@ -10,6 +10,7 @@ GameObject::GameObject(string vname)
 	vertexBufferPtr = -1;
 	vetexCount = -1;
 	debugMaterial = NULL;
+	animator = NULL;
 }
 
 GameObject::GameObject(){
@@ -74,12 +75,35 @@ GameObject::SetDebugMaterial(Material *vMaterial){
 	debugMaterial = vMaterial;
 }
 
-void 
-GameObject::Draw(){
-	Debug::GetInstance()->DrawLine(transform->GetPosition(),Vector3(transform->GetForward().x, transform->GetForward().y,transform->GetForward().z));
+void
+GameObject::SetAnimator(Animator* vanimator){
+	animator = vanimator;
+}
 
+
+Animator* 
+GameObject::GetAnimator(){
+	return animator;
+}
+
+void 
+GameObject::Update(){
+	if (NULL!=animator && animator->HasActiveAnimations()){
+		animator->Update();
+		SetMeshVertices(animator->GetMeshVertices());
+	}
 	transform->GetPhisicsMaterial()->Use();
 	transform->Update();
+}
+
+void 
+GameObject::Draw(){
+	//Log::GetInstance()->LogErr(to_string(transform->GetForward().x));
+	//Log::GetInstance()->LogErr(transform->GetForward().y);
+	//Log::GetInstance()->LogErr(transform->GetForward().z);
+	Debug::GetInstance()->DrawLine(transform->GetPosition(),Vector3(transform->GetForward().x, transform->GetForward().y,transform->GetForward().z));
+	transform->GetPhisicsMaterial()->Use();
+
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER,vertexBufferPtr);

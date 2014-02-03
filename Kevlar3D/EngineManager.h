@@ -13,12 +13,13 @@ private:
 												EngineManager(void);
 	vector<GameObject>*							gameObjectList;
 public:
-
 												~EngineManager(void);
 	void virtual								Start(int argc, char** argv);
 	shared_ptr<EngineManager>		static		GetInstance();
 	void virtual								HandleResize(int newW,int newH);
 	void virtual								HandleKeypress(unsigned char key, int x, int y);
+	void virtual								HandleKeyRelease(unsigned char key, int x, int y);
+	void virtual								Timer(int timeValue);
 	void virtual								Render(void)const;
 	void										Init();
 };

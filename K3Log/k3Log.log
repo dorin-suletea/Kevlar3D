@@ -20,4 +20,9 @@ LogInit
 -Info- [Shader] Shader alloc mem ok
 -Info- [Shader] Compiling shader fragment_shader.txt
 -Info- [Shader] Shader compiled ok
+-Err- [Shader] -------------------loading data10253
+-Info- [Shader] MD2 Frames loaded31
+-Err- [Shader] -------------------loading data10253
+-Info- [Shader] MD2 Frames loaded31
+-Err- [GameObject] GameObject Draven failed to set mesh vertices 1282
 LogDispose
